@@ -9,9 +9,16 @@ interface ProductsCartListProps {
     onRemoveItemFromCart: (id: number) => void,
     onAddOneMoreSameItemToCart: (id: number) => void,
     onRemoveOneLessSameItemToCart: (id: number) => void,
+    onHandleAmountQtdItemCart: (id: number, value: number) => void,
 }
 
-export function ProductsCartList({ productsInCart, onRemoveItemFromCart, onAddOneMoreSameItemToCart, onRemoveOneLessSameItemToCart }: ProductsCartListProps) {
+export function ProductsCartList({
+    productsInCart,
+    onRemoveItemFromCart,
+    onAddOneMoreSameItemToCart,
+    onRemoveOneLessSameItemToCart,
+    onHandleAmountQtdItemCart
+}: ProductsCartListProps) {
 
     function calcTotal() {
         const products: Product[] = JSON.parse(localStorage.getItem('products')!) || [];
@@ -45,6 +52,7 @@ export function ProductsCartList({ productsInCart, onRemoveItemFromCart, onAddOn
                             onRemoveItemFromCart={onRemoveItemFromCart}
                             onAddOneMoreSameItemToCart={onAddOneMoreSameItemToCart}
                             onRemoveOneLessSameItemToCart={onRemoveOneLessSameItemToCart}
+                            onHandleAmountQtdItemCart={onHandleAmountQtdItemCart}
                         />
                     ))}
                 </tbody>

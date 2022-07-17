@@ -11,9 +11,16 @@ interface ProductCartItemProps {
     onRemoveItemFromCart: (id: number) => void,
     onAddOneMoreSameItemToCart: (id: number) => void,
     onRemoveOneLessSameItemToCart: (id: number) => void,
+    onHandleAmountQtdItemCart: (id: number, value: number) => void,
 }
 
-export function ProductCartItem({ product, onRemoveItemFromCart, onAddOneMoreSameItemToCart, onRemoveOneLessSameItemToCart }: ProductCartItemProps) {
+export function ProductCartItem({
+    product,
+    onRemoveItemFromCart,
+    onAddOneMoreSameItemToCart,
+    onRemoveOneLessSameItemToCart,
+    onHandleAmountQtdItemCart 
+}: ProductCartItemProps) {
     
     function subTotal(amount: number, price: number) {
         return price * amount;
@@ -37,7 +44,13 @@ export function ProductCartItem({ product, onRemoveItemFromCart, onAddOneMoreSam
                 >
                     <img src={remove} alt="" />
                 </button>
-                <input type="text" readOnly value={product.amount} />
+                <input
+                    type="number"
+                    value={product.amount}
+                    onChange={(e) => onHandleAmountQtdItemCart(
+                        product.id, Number(e.target.value)
+                    )}
+                />
                 <button
                     onClick={() => onAddOneMoreSameItemToCart(product.id)}
                 >
@@ -46,7 +59,9 @@ export function ProductCartItem({ product, onRemoveItemFromCart, onAddOneMoreSam
             </td>
 
             <td>
-                <span>{formatCurrency(subTotal(product.amount!, product.price))}</span>
+                <span>
+                    {formatCurrency(subTotal(product.amount!, product.price))}
+                </span>
             </td>
 
             <td>

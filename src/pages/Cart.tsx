@@ -36,6 +36,15 @@ export function Cart() {
         localStorage.setItem('products', JSON.stringify(itensLocalStorage));
     }
 
+    function handleAmountQtdItemCart(id: number, value: number) {
+        const item = itensLocalStorage.find(item => item.id === id)!;
+        const indexItem = itensLocalStorage.indexOf(item);
+
+        itensLocalStorage[indexItem].amount = value;
+        setCartItems(itensLocalStorage);
+        localStorage.setItem('products', JSON.stringify(itensLocalStorage));
+    }
+
     return (
         <>
             <Header amountItemsInCart={itensLocalStorage.length}/>
@@ -45,6 +54,7 @@ export function Cart() {
                     onRemoveItemFromCart={removeItemFromLocalStorage}
                     onAddOneMoreSameItemToCart={addOneMoreSameItemToCart}
                     onRemoveOneLessSameItemToCart={removeOneLessSameItemToCart}
+                    onHandleAmountQtdItemCart={handleAmountQtdItemCart}
                 />
             ): (
                 <EmptyCart />
