@@ -1,14 +1,14 @@
-import styles from './header.module.css';
 import cartIcon from '../../assets/cart-icon.svg';
 import { NavLink } from 'react-router-dom';
 
+import { HeaderContainer } from './styles'
 interface HeaderProps {
     amountItemsInCart: number;
 }
 
 export function Header({ amountItemsInCart }: HeaderProps) {
     return (
-        <header className={styles.header}>
+        <HeaderContainer>
             <NavLink to="/">
                 <h2>WebMovies</h2>
             </NavLink>
@@ -22,6 +22,6 @@ export function Header({ amountItemsInCart }: HeaderProps) {
                     <img src={cartIcon} alt="" />
                 </NavLink>
             </div>
-        </header>
+        </HeaderContainer>
     )
 }

@@ -1,6 +1,6 @@
-import styles from './product.module.css';
 import addToCartIcon from '../../assets/add-to-cart.svg';
 import { Product } from '../../pages/Home';
+import { BuyContainer, ProductContainer, ProductInfoContainer } from './styles';
 
 interface ProductItemProps {
     title: string;
@@ -29,12 +29,12 @@ export function ProductItem({ title, price, image, id, onAddItemsToCart }: Produ
     const itensLocalStorage: Product[] = JSON.parse(localStorage.getItem('products')!) || [];
 
     return (
-        <div className={styles.product}>
-            <div className={styles.info}>
+        <ProductContainer>
+            <ProductInfoContainer>
                 <img src={image} alt="" />
                 <p>{ title }</p>
-            </div>
-            <div className={styles.buy}>
+            </ProductInfoContainer>
+            <BuyContainer>
                 <p>{ formatCurrency(price) }</p>
                 <button
                     onClick={() => onAddItemsToCart(id)}
@@ -44,7 +44,7 @@ export function ProductItem({ title, price, image, id, onAddItemsToCart }: Produ
                     <img src={addToCartIcon} width="28" />
                     <span>Adicionar ao carrinho</span>
                 </button>
-            </div>
-        </div>
+            </BuyContainer>
+        </ProductContainer>
     )
 }

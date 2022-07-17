@@ -1,6 +1,6 @@
-import styles from './productslist.module.css';
 import { Product } from '../../pages/Home';
 import { ProductItem } from '../ProductItem';
+import { ProductsContainer } from './styles';
 
 interface ProductsListProps {
     products: Product[] | null,
@@ -9,7 +9,7 @@ interface ProductsListProps {
 
 export function ProductsList({ products, onAddItemsToCart }: ProductsListProps) {
     return (
-        <section className={styles.products}>
+        <ProductsContainer>
             {products?.map(product => (
                 <ProductItem
                     id={product.id}
@@ -20,6 +20,6 @@ export function ProductsList({ products, onAddItemsToCart }: ProductsListProps) 
                     onAddItemsToCart={onAddItemsToCart}
                 />
             ))}
-        </section>
+        </ProductsContainer>
     )
 }

@@ -1,10 +1,9 @@
 import { Product } from '../../pages/Home';
-import styles from './productCartItem.module.css';
 import trash from '../../assets/trash.svg';
 import add from '../../assets/add.svg';
 import remove from '../../assets/remove.svg';
-import { useState } from 'react';
 import { formatCurrency } from '../ProductItem';
+import { AmountContainer, RowContainer } from './styles';
 
 interface ProductCartItemProps {
     product: Product;
@@ -27,7 +26,7 @@ export function ProductCartItem({
     }
 
     return (
-        <tr className={styles.row}>
+        <RowContainer>
             <td>
                 <img src={product.image} alt="" />
             </td>
@@ -37,7 +36,7 @@ export function ProductCartItem({
                 <span>{formatCurrency(product.price)}</span>
             </td>
 
-            <td className={styles.amount}>
+            <AmountContainer>
                 <button
                     onClick={() => onRemoveOneLessSameItemToCart(product.id)}
                     disabled={product.amount! < 2}
@@ -56,7 +55,7 @@ export function ProductCartItem({
                 >
                     <img src={add} alt="" />
                 </button>
-            </td>
+            </AmountContainer>
 
             <td>
                 <span>
@@ -71,6 +70,6 @@ export function ProductCartItem({
                     <img src={trash} alt="" />
                 </button>
             </td>
-        </tr>
+        </RowContainer>
     )
 }

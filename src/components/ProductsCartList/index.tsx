@@ -1,8 +1,8 @@
-import styles from './productsCartList.module.css';
 import { Product } from "../../pages/Home";
 import { ProductCartItem } from "../ProductCartItem";
 import { formatCurrency } from '../ProductItem';
 import { Link } from 'react-router-dom';
+import { BuyContainer, CartContainer, TableContainer } from "./styles";
 
 interface ProductsCartListProps {
     productsInCart: Product[];
@@ -33,8 +33,8 @@ export function ProductsCartList({
     }
 
     return (
-        <div className={styles.cartContainer}>
-            <table className={styles.table}>
+        <CartContainer>
+            <TableContainer>
                 <thead>
                     <tr>
                         <th></th>
@@ -56,10 +56,10 @@ export function ProductsCartList({
                         />
                     ))}
                 </tbody>
-            </table>
+            </TableContainer>
             <hr />
 
-            <div className={styles.buy}>
+            <BuyContainer>
                 <button>
                     <Link to="/checkout">
                         Finalizar Pedido
@@ -70,7 +70,7 @@ export function ProductsCartList({
                     <span>Total</span>
                     <p>{formatCurrency(calcTotal()!)}</p>
                 </div>
-            </div>
-        </div>
+            </BuyContainer>
+        </CartContainer>
     )
 }
